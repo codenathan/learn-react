@@ -10,6 +10,8 @@ import { puppies } from "./data/puppies";
 import { useState } from "react";
 import { Puppy } from "./types";
 
+import { LikedContext } from "./context/liked-context";
+
 export function App() {
   return (
     <PageWrapper>
@@ -26,16 +28,14 @@ function Main() {
 
   return (
   <main>
-
+    <LikedContext value={{ liked, setLiked }} >
     <div className="mt-24 grid gap-8 sm:grid-cols-2">
-  
       <Search/>
-      <Shortlist />
-    
+      <Shortlist puppies={puppies} />
     </div>
     
-    <PuppiesList puppies={puppies} liked={liked} setLiked={setLiked} />
-    
+    <PuppiesList puppies={puppies} />
+    </LikedContext>
     <NewPuppyForm />
 
   </main>
